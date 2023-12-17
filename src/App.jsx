@@ -71,7 +71,7 @@ function ShowStudent({ student, setActiveImg }) {
       <img
         className="rounded-lg w-[100px] h-[100px]"
         onClick={() => setActiveImg(student.img)}
-        src={`/public/${student.img}`}
+        src={`${student.img}`}
         alt={student.name}
       />
     </div>

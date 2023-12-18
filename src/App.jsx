@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import sStudents from "../jsons/college-science.json";
 import bStudents from "../jsons/college-business.json";
 import hStudents from "../jsons/college-humanities.json";
@@ -68,12 +70,24 @@ function ShowStudent({ student, setActiveImg }) {
         <p className="text-secondary-600">{student.roll}</p>
         <p className="text-accent-800 font-semibold">{student.group}</p>
       </div>
-      <img
-        className="rounded-lg w-[100px] h-[100px]"
+      <div
         onClick={() => setActiveImg(student.img)}
+<<<<<<< Updated upstream
         src={`${student.img}`}
         alt={student.name}
       />
+=======
+        className="rounded-lg object-cover w-[100px] h-[100px]"
+      >
+        <LazyLoadImage
+          alt={student.name}
+          placeholderSrc={student.img} // use normal <img> attributes as props
+          src={`https://ggc.eshiksabd.com/${student.img}`}
+          width={"80px"}
+          height={"80px"}
+        />
+      </div>
+>>>>>>> Stashed changes
     </div>
   );
 }

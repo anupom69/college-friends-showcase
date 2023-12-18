@@ -71,12 +71,13 @@ function ShowStudent({ student, setActiveImg }) {
       <img
         className="rounded-lg w-[100px] h-[100px]"
         onClick={() => setActiveImg(student.img)}
-        src={`${student.img}`}
+        src={`https://ggc.eshiksabd.com/${student.img}`}
         alt={student.name}
       />
     </div>
   );
 }
+// https://ggc.eshiksabd.com/image/student/20231119090629.jpg
 
 function ShowImage({ activeImg, setActiveImg }) {
   console.log(activeImg); // Changed from activeImg.activeImg to activeImg

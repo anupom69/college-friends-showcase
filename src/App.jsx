@@ -72,16 +72,9 @@ function ShowStudent({ student, setActiveImg }) {
       </div>
       <div
         onClick={() => setActiveImg(student.img)}
-        className="rounded-lg object-cover w-[100px] h-[100px]"
-      >
-        <LazyLoadImage
-          alt={student.name}
-          placeholderSrc={student.img} // use normal <img> attributes as props
-          src={`https://ggc.eshiksabd.com/${student.img}`}
-          width={"80px"}
-          height={"80px"}
-        />
-      </div>
+        src={`${student.img}`}
+        alt={student.name}
+      />
     </div>
   );
 }

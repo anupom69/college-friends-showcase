@@ -72,11 +72,6 @@ function ShowStudent({ student, setActiveImg }) {
       </div>
       <div
         onClick={() => setActiveImg(student.img)}
-<<<<<<< Updated upstream
-        src={`${student.img}`}
-        alt={student.name}
-      />
-=======
         className="rounded-lg object-cover w-[100px] h-[100px]"
       >
         <LazyLoadImage
@@ -87,10 +82,10 @@ function ShowStudent({ student, setActiveImg }) {
           height={"80px"}
         />
       </div>
->>>>>>> Stashed changes
     </div>
   );
 }
+// https://ggc.eshiksabd.com/image/student/20231119090629.jpg
 
 function ShowImage({ activeImg, setActiveImg }) {
   console.log(activeImg); // Changed from activeImg.activeImg to activeImg

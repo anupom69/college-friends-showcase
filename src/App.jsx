@@ -1,33 +1,52 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import sStudents from "../jsons/college-science.json";
 import bStudents from "../jsons/college-business.json";
 import hStudents from "../jsons/college-humanities.json";
 
-function App() {
-  const [activeGroup, setActiveGroup] = useState("science");
-  let students = null;
-  if (activeGroup === "science") {
-    students = sStudents;
-  } else if (activeGroup === "business") {
-    students = bStudents;
-  } else {
-    students = hStudents;
+const initialState = {
+  students: sStudents,
+  activeImage: null,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "grpScience":
+      return { ...state, students: sStudents };
+    case "grpHumanities":
+      return { ...state, students: hStudents };
+    case "grpBusiness":
+      return { ...state, students: bStudents };
+    case "changeImg":
+      return { ...state, activeImage: state.activeImage == null ? action.payload : null };
+    case "closeImg":
+      return { ...state, activeImage: null };
+    default:
+      return function () {
+        console.error("Unknwon Action triggered.");
+        return { ...state };
+      };
   }
-  const [activeImg, setActiveImg] = useState(null);
+}
+
+function App() {
+  const [{ students, activeImage }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   return (
     <div>
-      {activeImg && (
-        <ShowImage activeImg={activeImg} setActiveImg={setActiveImg} />
+      {activeImage && (
+        <ShowImage activeImage={activeImage} dispatch={dispatch} />
       )}
-      <ChooseGroup activeGroup={activeGroup} setActiveGroup={setActiveGroup} />
+      <ChooseGroup dispatch={dispatch} />
       <div className="container mx-auto">
         {students.map((student) => (
           <ShowStudent
             key={student.roll}
             student={student}
-            setActiveImg={setActiveImg}
+            dispatch={dispatch}
           />
         ))}
       </div>
@@ -35,7 +54,7 @@ function App() {
   );
 }
 
-function ChooseGroup({ activeGroup, setActiveGroup }) {
+function ChooseGroup({ dispatch }) {
   const ref = useRef(null);
   useEffect(function () {
     ref.current.focus();
@@ -44,25 +63,28 @@ function ChooseGroup({ activeGroup, setActiveGroup }) {
     <div className="bg-text-100 rounded-lg w-screen pt-5 border-b-2 border-text-600 pb-4 px-2 border-dashed">
       <button
         ref={ref}
-        onClick={() => setActiveGroup("science")}
+        onClick={() => dispatch({ type: "grpScience" })}
         className="sp-button"
       >
         Science
       </button>
       <button
-        onClick={() => setActiveGroup("humanities")}
+        onClick={() => dispatch({ type: "grpHumanities" })}
         className="sp-button"
       >
         Humanities
       </button>
-      <button onClick={() => setActiveGroup("business")} className="sp-button">
+      <button
+        onClick={() => dispatch({ type: "grpBusiness" })}
+        className="sp-button"
+      >
         Business Studies
       </button>
     </div>
   );
 }
 
-function ShowStudent({ student, setActiveImg }) {
+function ShowStudent({ student, dispatch }) {
   return (
     <div className="student">
       <div>
@@ -71,7 +93,7 @@ function ShowStudent({ student, setActiveImg }) {
         <p className="text-accent-800 font-semibold">{student.group}</p>
       </div>
       <div
-        onClick={() => setActiveImg(student.img)}
+        onClick={() => dispatch({type: "changeImg", payload: student.img})}
         className="rounded-lg object-cover w-[100px] h-[100px]"
       >
         <LazyLoadImage
@@ -87,20 +109,19 @@ function ShowStudent({ student, setActiveImg }) {
 }
 // https://ggc.eshiksabd.com/image/student/20231119090629.jpg
 
-function ShowImage({ activeImg, setActiveImg }) {
-  console.log(activeImg); // Changed from activeImg.activeImg to activeImg
+function ShowImage({ activeImage, dispatch }) {
   return (
-    <div onClick={() => setActiveImg(null)} className="big-img">
+    <div onClick={() => dispatch({type:"changeImg"})} className="big-img">
       <button
         className="text-left sp-button"
-        onClick={() => setActiveImg(null)}
+        onClick={() => dispatch({type:"changeImg"})}
       >
         ❌
       </button>
       <img
         className="object-contain w-80 mx-auto rounded-2xl"
-        src={activeImg}
-        onClick={() => setActiveImg(null)}
+        src={activeImage}
+        onClick={() => dispatch({type:"changeImg"})}
         alt="big-image"
       />
     </div>

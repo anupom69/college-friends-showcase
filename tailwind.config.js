@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "custom01": ['Salsa', "cursive"]
+      }
+    },
     colors: {
       'text': {
         50: '#eef3f6',

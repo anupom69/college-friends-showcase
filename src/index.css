@@ -4,7 +4,7 @@
 
 @layer components {
   #root {
-    @apply overflow-hidden bg-background-200 text-text-900 text-center
+    @apply font-custom01 overflow-hidden bg-background-200 text-text-900 text-center
   }
 
   .container {
@@ -15,10 +15,32 @@
     @apply bg-text-50 flex justify-between gap-4 mb-5 p-5 rounded-lg text-center
   }
 
-  .sp-button {
-    @apply px-5 py-1 rounded-lg text-text-100 bg-background-600 text-lg font-semibold focus:outline-4 focus:outline-accent-950 focus:outline-none focus:text-accent-950 focus:bg-text-50 mx-2 my-1
-  }
+
   .big-img {
     @apply fixed bg-opacity-70 text-center pt-40 bg-text-900 w-screen h-screen
+  }
+
+  .nav-link {
+    @apply lg:px-2 hover:text-accent-300 transition-colors duration-300
+  }
+
+  a.nav-link.active {
+    @apply border-2 text-accent-500 rounded-lg;
+  }
+
+  .homepage {
+    @apply text-2xl flex flex-col items-center justify-center h-screen mx-auto
+  }
+  .custom-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4487bb; /* Default background color (500 level) */
+    color: #ffffff; /* Default text color (highest level) */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .custom-button:hover {
+    background-color: #699fc9; /* Hover background color (400 level) */
+    color: #ffffff; /* Hover text color (highest level) */
   }
 }

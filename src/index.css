@@ -7,6 +7,7 @@
     @apply font-custom01 overflow-hidden bg-background-200 text-text-900 text-center
   }
 
+
   .container {
     @apply p-5 md:columns-2 lg:columns-4 columns-auto
   }
@@ -32,8 +33,8 @@
     @apply text-2xl flex flex-col items-center justify-center h-screen mx-auto
   }
   .custom-button {
-    margin-top: 10px;
-    padding: 10px 20px;
+    margin-top: 20px;
+    padding: 5px 20px;
     background-color: #4487bb; /* Default background color (500 level) */
     color: #ffffff; /* Default text color (highest level) */
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -42,5 +43,13 @@
   .custom-button:hover {
     background-color: #699fc9; /* Hover background color (400 level) */
     color: #ffffff; /* Hover text color (highest level) */
+  }
+
+  .footer {
+    @apply fixed bottom-0 w-screen bg-background-700 text-text-400
+  }
+
+  .footer a {
+    @apply text-text-100 px-4
   }
 }

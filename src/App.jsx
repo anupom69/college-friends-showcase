@@ -4,6 +4,7 @@ import Humanities from "./components/Humanities";
 import Business from "./components/Business";
 import Science from "./components/Science";
 import Home from "./Home";
+import Footer from "./Footer";
 function App() {
   return (
     <div>
@@ -15,6 +16,7 @@ function App() {
           <Route path="/humanities" element={<Humanities />} />
           <Route path="/business" element={<Business />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

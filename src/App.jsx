@@ -1,47 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Humanities from "./components/Humanities";
 import Business from "./components/Business";
 import Science from "./components/Science";
 import Home from "./Home";
 import Footer from "./Footer";
+import { Navigation } from "./Navigation";
 function App() {
+  const [query, setQuery] = useState("");
   return (
     <div>
       <BrowserRouter>
-        <Navigation />
+        <Navigation query={query} setQuery={setQuery} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/science" element={<Science />} />
-          <Route path="/humanities" element={<Humanities />} />
-          <Route path="/business" element={<Business />} />
+          <Route path="/science" element={<Science query={query} />} />
+          <Route path="/humanities" element={<Humanities query={query} />} />
+          <Route path="/business" element={<Business query={query} />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
-    </div>
-  );
-}
-
-function Navigation() {
-  return (
-    <div className="bg-background-700 text-text-500 p-4 fixed top-0 w-full z-10">
-      <div className="flex items-center justify-between md:max-w-[80%] lg:max-w-[83%] mx-auto">
-        <Link to="/" className="text-lg font-bold text-primary-500">
-          Home
-        </Link>
-
-        <div className="flex space-x-4">
-          <NavLink to="/science" className="nav-link">
-            Science
-          </NavLink>
-          <NavLink to="/humanities" className="nav-link">
-            Humanities
-          </NavLink>
-          <NavLink to="/business" className="nav-link">
-            Business
-          </NavLink>
-        </div>
-      </div>
     </div>
   );
 }

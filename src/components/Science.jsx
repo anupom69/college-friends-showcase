@@ -1,14 +1,15 @@
 import { useMemo, useState } from "react";
+import students from "../../jsons/college-science.json";
 import { ShowStudent } from "../ShowStudent";
 import { ShowImage } from "../ShowImage";
 
-export default function Science({ query, students }) {
+export default function Science({ query }) {
   const [activeImg, setActiveImg] = useState(null);
   const filteredSt = useMemo(() => {
     return students.filter((student) => {
       return student.name.toLowerCase().includes(query);
     });
-  }, [query, students]);
+  }, [query]);
   return (
     <div>
       {activeImg && (

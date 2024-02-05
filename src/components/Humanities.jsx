@@ -2,14 +2,17 @@ import { useState, useMemo } from "react";
 import students from "../../jsons/college-humanities.json";
 import { ShowStudent } from "../ShowStudent";
 import { ShowImage } from "../ShowImage";
+import { useSearchParams } from "react-router-dom";
 
-export default function Science({ query }) {
+export default function Science() {
+  const [searchQuery] = useSearchParams()
+  const q = searchQuery.get("q")
   const [activeImg, setActiveImg] = useState(null);
   const filteredSt = useMemo(() => {
     return students.filter((student) => {
-      return student.name.toLowerCase().includes(query);
+      return student.name.toLowerCase().includes(!q? "": q);
     });
-  }, [query]);
+  }, [q]);
   return (
     <div>
       {activeImg && (

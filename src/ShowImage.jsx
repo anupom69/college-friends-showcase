@@ -1,3 +1,5 @@
+import React from "react";
+
 // https://ggc.eshiksabd.com/image/student/20231119090629.jpg
 export function ShowImage({ activeImg, setActiveImg }) {
   return (
@@ -10,7 +12,7 @@ export function ShowImage({ activeImg, setActiveImg }) {
       </button>
       <img
         className="object-contain w-80 mx-auto rounded-2xl"
-        src={`https://ggc.eshiksabd.com/${activeImg}`}
+        src={activeImg}
         onClick={() => setActiveImg(null)}
         alt="big-image"
       />

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import Search from "./components/Search";
-export function Navigation() {
+export function Navigation({query, setQuery}) {
   return (
     <>
       <div className="bg-background-700 text-text-500 p-4 fixed top-0 w-full z-10">
@@ -20,7 +20,7 @@ export function Navigation() {
               Business
             </NavLink>
           </div>
-        <Search/>
+        <Search query={query} setQuery={setQuery}/>
         </div>
       </div>
     </>

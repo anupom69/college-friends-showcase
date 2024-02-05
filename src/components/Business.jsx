@@ -1,18 +1,15 @@
 import { useState, useMemo } from "react";
 import students from "../../jsons/college-business.json";
-import { useSearchParams } from "react-router-dom";
 import { ShowStudent } from "../ShowStudent";
 import { ShowImage } from "../ShowImage";
 
-export default function Business() {
-  const [searchQuery] = useSearchParams()
-  const q = searchQuery.get("q")
+export default function Business({ query }) {
   const [activeImg, setActiveImg] = useState(null);
   const filteredSt = useMemo(() => {
     return students.filter((student) => {
-      return student.name.toLowerCase().includes(!q? "": q);
+      return student.name.toLowerCase().includes(query);
     });
-  }, [q]);
+  }, [query]);
   return (
     <div>
       {activeImg && (
